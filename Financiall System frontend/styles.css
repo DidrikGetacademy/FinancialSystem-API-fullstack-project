@@ -1,0 +1,26 @@
+body {
+background-color: grey;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Set the container height to 100% of the viewport height */
+}
+
+
+.element {
+    width: 200px; /* Juster bredden etter behov */
+    height: 100px; /* Juster høyden etter behov */
+    margin: 10px; /* Legg til mellomrom mellom elementene */
+  }
+
+button{
+background-color: black;
+color: white;
+width: 10vh;
+border-radius: 25vh;
+}
+
