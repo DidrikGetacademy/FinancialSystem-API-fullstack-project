@@ -9,7 +9,7 @@ Username: usernameInput,
 Password: passwordinput,
 };
 
-fetch("http://localhost:5280/api/User/Login",{
+fetch("https://localhost:5228/api/User/Login",{
 method: "POST",
 headers:{
 "Content-Type": "application/json",
@@ -25,4 +25,4 @@ alert("Username or password is wrong")
 alert("Login Failed")
 }
 });
-}
+} 

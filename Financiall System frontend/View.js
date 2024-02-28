@@ -1,18 +1,17 @@
-view();
+//view();
 function view(){
     const app = document.getElementById("app");
     app.innerHTML = /*HTML*/ `
-    <div class="container">
-    <div>${HeadTitle()}<div>
-    <div>${FrontPageButtons()}<div>
+    <div class="container">${HeadTitle()}<div>
+    <div class="button-container">${FrontPageButtons()}<div>
     </div>
     `;
 }
 
 function FrontPageButtons(){
     return /*HTML*/ `
-    <button onclick="RegisterView()">Register</button>
-    <button onclick="LoginView()">Login</button>
+    <button style="cursor: pointer;"  onclick="RegisterView()">Register</button>
+    <button style="cursor: pointer;"  onclick="LoginView()">Login</button>
     `;
     }
 
@@ -20,7 +19,6 @@ function FrontPageButtons(){
 function HeadTitle(){
 return /*HTML*/`
 <h1>Financial System</h1>
-<h2>Welcome</h2>
 <h2>sign in or register</h2>
 `;
 }

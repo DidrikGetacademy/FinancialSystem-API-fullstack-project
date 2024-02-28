@@ -1,26 +1,207 @@
 body {
-background-color: grey;
+  background-color: grey;
+  margin: 0; 
+  padding: 0; 
+  background-image: url("/images/Finance2.jpg");
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    height: 100vh; /* Set the container height to 100% of the viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  height: 100vh; 
+  margin: 0 auto; 
+  max-width: 1200px; 
+  padding: 0 20px; 
 }
 
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-.element {
-    width: 200px; /* Juster bredden etter behov */
-    height: 100px; /* Juster høyden etter behov */
-    margin: 10px; /* Legg til mellomrom mellom elementene */
+button {
+  background-color: black;
+  color: white;
+  width: 10vh;
+  border-radius: 25vh;
+  margin: 0 5px; 
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+.GoBackimg{
+position: relative;
+height: 30px;
+right: 78%;
+bottom: 34%;
+cursor: pointer ;
+}
+.hexagon {
+  width: 122px; /* Adjust the size as needed */
+  height: 72px; /* Adjust the size as needed */
+  background-color: #2f80ed; /* Futuristic blue color */
+  position: relative;
+  left: 37.9px; /* Adjust the position as needed */
+  bottom: 287.5px; /* Adjust the position as needed */
+  transform: rotate(30.6deg);
+ opacity: 0.9; /* Adjust opacity value as needed */
+
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  border-left: 62px solid transparent;
+  border-right: 60px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 99%;
+  border-bottom: 38px solid #2f80ed; /* Half of the height */
+}
+
+.hexagon:after {
+  top: 99%;
+  width: 0;
+  border-top: 35.64px solid #2f80ed; /* Half of the height */
+}
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Adjust text color as needed */
+  text-shadow: 0 0 10px rgba(34, 24, 177, 0.7); /* Text glow effect */
+}
+
+.Username{
+  position: relative;
+   right: 88vh; 
+   bottom: 51vh; 
+   color: whitesmoke;
+   font-size: 17px
+}
+
+.usernameContainer{
+background-color: rgb(3, 133, 214);
+text-shadow: 0 10 10px rgba(0, 255, 221, 0.7); /* Text glow effect */
+animation:infinite 10s;
+margin: 2px;
+width: 170px;
+border-radius: 60px;
+height: 25;
+text-align: center;
+
+}
+
+.nr1{
+position: relative;
+left: 25px;
+top: 25px;
+color: white;
+}
+
+.nr2{
+  position: relative;
+  color: white;
+  rotate: -90deg;
+  cursor: pointer;
+}
+
+.nr3{
+  position: relative;
+  left: -5px;
+  top: 10px;
+  rotate: 230deg;
+  color: white;
+  cursor: pointer;
+}
+
+.element1{
+position:relative;
+top:112px;
+left: 63px;
+transform: rotate(0deg);
+cursor: pointer;
+}
+
+.element2{
+position:relative;
+top: 37.8px;
+left: -7.3vh;
+transform: rotate(61deg);
+ cursor: pointer;
   }
 
-button{
-background-color: black;
-color: white;
-width: 10vh;
-border-radius: 25vh;
+  .element3{
+    position:relative;
+    bottom: 149px;
+    left:-129px;
+    transform: rotate(121.5deg);
+   
+    }
+
+    .Project{
+    position: absolute;
+    top: 31.8%;
+    width: 100%;
+    height: 650px;
+    background-color: rgb(3, 15, 24);
+    }
+
+    .NameDiv{
+     position: absolute;
+     display: flex;
+     left: 44%;
+   
+    }
+.InputName{
+border-radius: 30px;
+height: 25px;
+position: absolute;
+left: 45.5%;
+top: 110px;
 }
 
+.DescriptionInput{
+width: 500px;
+height: 400px;
+background-color: lightgrey;
+left: 37.5%;
+bottom: -95px;
+position: relative;
+border-radius: 15px;
+font-size: 15px;
+}
+
+
+.DescriptionLabel{
+font-size: 25px;
+position: absolute;
+left: 47%;
+top: 25%;
+}
+
+.NameLabel{
+position: absolute;
+left: 47%;
+font-size: 20px;
+}
+
+.CreateProjectsButton{
+position: absolute;
+left: 48%;
+top: 94%;
+height: 30px;
+border-radius:  10px;
+cursor: pointer;
+}
