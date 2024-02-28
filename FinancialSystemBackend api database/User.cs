@@ -14,7 +14,7 @@ namespace FinancialSystemBackend_api_database
         public bool IsOnline { get; set; }
         public int id { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
       
         public List<Savings> UserSavingProjects { get; set; }

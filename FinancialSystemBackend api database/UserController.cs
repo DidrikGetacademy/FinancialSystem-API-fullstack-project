@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using BCrypt.Net;
+using ØkonomiSystemet;
 
 namespace FinancialSystemBackend_api_database
 {
 
-    [ApiController]// markerer klassen som et api
+    [ApiController] // markerer klassen som et api
     [Route("api/[Controller]")] // angir ruten ( alle HTTP-forespørsler til dette API-et må starte med /api/User)
-    public class UserController : ControllerBase // del av ASP.NET Core-rammeverket og gir funksjonalitet for å håndtere HTTP-forespørsler i en ASP.NET Core-applikasjon.
+    public class
+        UserController : ControllerBase // del av ASP.NET Core-rammeverket og gir funksjonalitet for å håndtere HTTP-forespørsler i en ASP.NET Core-applikasjon.
     {
         private readonly DbConnection _Context; //privat referanse til dbconnection klassen
 
@@ -16,11 +19,35 @@ namespace FinancialSystemBackend_api_database
 
 
 
+        [HttpPost("project")]
+        public IActionResult CreateProject([FromBody] ProjectCreationRequest project)
+        {
+            if (project == null || string.IsNullOrEmpty(project.Title) || string.IsNullOrEmpty(project.Username))
+            {
+                return BadRequest("Invalid Project data");
+            }
+            string Projectname = project.Title;
+            string description = project.Description;
+
+            Savings newProject = new Savings(Projectname, description);
+            var CurrentUser = _Context.Users.FirstOrDefault(x => x.Username == project.Username);
+            if (CurrentUser == null)
+            {
+                BadRequest("User not found");
+            }
+
+            CurrentUser.UserSavingProjects.Add(newProject);
+            _Context.SaveChanges();
+            return Ok("Project created sucsessfully");
+        }
+
+
+     
 
 
 
 
-        [HttpPost("register")]   // en HttpPost som registerer ny bruker i database
+        [HttpPost("register")] // en HttpPost som registerer ny bruker i database
         public IActionResult RegisterUser([FromBody] User user)
         {
             // sjekker om det finnes en bruker i databasen med dette navnet, vis det gjør det så returnerer den en conflict, vis ikke så legger den brukeren til i databasen
@@ -29,11 +56,13 @@ namespace FinancialSystemBackend_api_database
                 return Conflict("User with this username already exsist. please choose a different username");
             }
 
-            _Context.Users.Add(user);//legger til bruker i database
-            _Context.SaveChanges();// lagrer endringer
-            return Ok();// sender en ok status til frontend
-        }
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.Password = hashedPassword;
 
+            _Context.Users.Add(user); //legger til bruker i database
+            _Context.SaveChanges(); // lagrer endringer
+            return Ok(); // sender en ok status til frontend
+        }
 
 
 
@@ -43,28 +72,58 @@ namespace FinancialSystemBackend_api_database
         {
             try
             {
-                var exsistingUser = _Context.Users.FirstOrDefault(x => x.Username == Logindata.Username && x.Password == Logindata.Password); //variabel som sjekker om data fra frontend matcher data i databasen
-                if (exsistingUser != null)// vis data er lik og password og username stemmer så kjøres en ok (godkjent)
-                {
-                    return Ok(new { _username = exsistingUser.Username });
-                }
-                else// vis ikke så kjører en unatorized feil brukernavn eller password 
-                {
-                    return Unauthorized("Invalid username or password");
-                }
 
+                var existingUser = _Context.Users.FirstOrDefault(x => x.Username == Logindata.Username);
+
+                if (existingUser != null)
+                {
+                    if (BCrypt.Net.BCrypt.Verify(Logindata.Password, existingUser.Password))
+                    {
+                        Console.WriteLine("Login successful for user: " + existingUser.Username);
+                        return Ok(new { _username = existingUser.Username });
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid username or password");
+                        return Unauthorized("Invalid username or password");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("User not found");
+                    return Unauthorized("user not found");
+                }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception occurred: " + ex.Message);
                 return StatusCode(500, $"failed to log in: {ex.Message}");
             }
         }
     }
+}
 
-    public class UserloginDTO // en klasse som representerer brukerdata fra frontend 
-    {
-        public string Username { get; set; }
 
-        public string Password { get; set; }    
-    }
+
+
+
+//klasse som representerer data fra frontend ihenhold til login
+public class UserloginDTO 
+{
+            public string Username { get; set; }
+
+            public string Password { get; set; }
+}
+
+
+
+
+
+
+//klasse som representerer data fra frontend ihenhold til opprettelse av prosjekt 
+public class ProjectCreationRequest
+{
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Username { get; set; }
 }
