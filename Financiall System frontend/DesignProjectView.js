@@ -1,16 +1,17 @@
-function DesignProject(username){
+
+function DesignProject(Username){
     const app = document.getElementById("app");
     app.innerHTML = /*HTML*/ `
     <div class="container">
-    <img src="/images/back.png" class="GoBackimg" onclick="HomepageView()"><img>
-    ${ProjectDetails(username)}
+    <img src="/images/back.png" class="GoBackimg" onclick="HomepageView(username)"><img>
+    ${ProjectDetails(Username)}
     </div>
       `;
 
 
 
 }
-function ProjectDetails(username){
+function ProjectDetails(Username){
 return /*html*/ `
 <div class="Project">
     <h1>Create New Project</h1>
@@ -22,7 +23,7 @@ return /*html*/ `
         <label class="DescriptionLabel">Description</label>
         <textarea id="description" class="DescriptionInput"></textarea>
     </div>
-    <button class="CreateProjectsButton" onclick="ProjectCreate('${username}')">Save</button>
+    <button class="CreateProjectsButton" onclick="ProjectCreate('${Username}')">Save</button>
 </div>
 `;
 

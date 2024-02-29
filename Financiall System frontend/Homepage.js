@@ -12,12 +12,13 @@ function HomepageView(username) {
 function Homepage(username){
 return /*HTML*/`
 <div class="Username ">Logged in as ${username}<div>
+<button class="Logout">Logout</button>
 `;
 } 
 
 
 function optionmenu(username){
-    user = username
+    user = username;
     return /*html*/`
     <div class="hexagon"onmouseover="showOptions()" onmouseout="hideOptions()" >
     <div class="content" >
@@ -26,7 +27,7 @@ function optionmenu(username){
     
     
     <div class="options" >
-            <div onclick="projectview()" class="hexagon element1">
+            <div onclick="projectview(user)" class="hexagon element1">
                 <div class="nr1">My projects</div>
             </div>
             <div onclick="DesignProject(user)" class="hexagon element2">

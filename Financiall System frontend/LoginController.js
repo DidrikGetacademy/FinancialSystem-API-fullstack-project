@@ -17,8 +17,8 @@ headers:{
 body: JSON.stringify(userData),
 }).then((response) => {
 if(response.ok){
-  alert("Login Sucsessfull")
   HomepageView(userData.Username);
+  localStorage.setItem('username', userData.Username);
 }else if(response.status === 409){
 alert("Username or password is wrong")
 }else {

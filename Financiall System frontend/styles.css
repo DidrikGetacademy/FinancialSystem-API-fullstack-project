@@ -38,20 +38,21 @@ h1, h2 {
 
 .GoBackimg{
 position: relative;
-height: 30px;
-right: 78%;
-bottom: 34%;
+right: 1000px;
+bottom: 350px;
+margin: 0;
+height: 35px;
 cursor: pointer ;
 }
 .hexagon {
-  width: 122px; /* Adjust the size as needed */
-  height: 72px; /* Adjust the size as needed */
-  background-color: #2f80ed; /* Futuristic blue color */
+  width: 122px; 
+  height: 72px; 
+  background-color: #2f80ed; 
   position: relative;
-  left: 37.9px; /* Adjust the position as needed */
-  bottom: 287.5px; /* Adjust the position as needed */
+  bottom: 340px;
+  left: -69px;
   transform: rotate(30.6deg);
- opacity: 0.9; /* Adjust opacity value as needed */
+ opacity: 0.9; 
 
 }
 
@@ -137,7 +138,7 @@ cursor: pointer;
 .element2{
 position:relative;
 top: 37.8px;
-left: -7.3vh;
+left: -6.3vh;
 transform: rotate(61deg);
  cursor: pointer;
   }
@@ -204,4 +205,56 @@ top: 94%;
 height: 30px;
 border-radius:  10px;
 cursor: pointer;
+}
+
+
+
+
+.ProjectContainer {
+  width: 300px; /* Adjust the width as needed */
+  height: flex; /* Adjust the height as needed */
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ProjectBox {
+  width: 200px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  border: 2px solid #304d81; /* Adjust the border color as needed */
+  margin-bottom: 10px; /* Adjust the spacing between project boxes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ProjectTitle {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  padding: 10px;
+  text-align: center; 
+  cursor: pointer;
+}
+
+.MyProjectTitle {
+  text-align: center;
+  color: white;
+  font-size: 30px;
+}
+
+
+
+.ProjectBox2{
+width: 500px;
+height: 200px;
+background-color: black;
+color: white;
+}
+
+
+.Logout{
+
 }

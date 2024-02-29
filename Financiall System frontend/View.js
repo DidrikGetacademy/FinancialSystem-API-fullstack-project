@@ -1,4 +1,4 @@
-//view();
+view();
 function view(){
     const app = document.getElementById("app");
     app.innerHTML = /*HTML*/ `
