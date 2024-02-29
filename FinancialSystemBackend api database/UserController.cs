@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics.Eventing.Reader;
+using Microsoft.AspNetCore.Mvc;
 using BCrypt.Net;
+using Microsoft.EntityFrameworkCore;
 using ØkonomiSystemet;
 
 namespace FinancialSystemBackend_api_database
@@ -26,6 +28,7 @@ namespace FinancialSystemBackend_api_database
             {
                 return BadRequest("Invalid Project data");
             }
+
             string Projectname = project.Title;
             string description = project.Description;
 
@@ -42,12 +45,45 @@ namespace FinancialSystemBackend_api_database
         }
 
 
-     
 
 
 
 
-        [HttpPost("register")] // en HttpPost som registerer ny bruker i database
+
+
+
+
+
+
+        [HttpPost("projectList")]
+        public IActionResult GetProjectsForUser([FromBody] string Username)
+        {
+            Console.WriteLine($"Received request for projects for user: {Username}");
+            var user = _Context.Users.Include(x => x.UserSavingProjects).FirstOrDefault(x => x.Username == Username);
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+
+
+
+            if (user.UserSavingProjects != null)
+            {
+                var projects = user.UserSavingProjects.Select(x => new { x.Title, x.Description });
+                return Ok(projects);
+            }
+            else
+            {
+                return BadRequest("User has no projects");
+            }
+        }
+        
+
+
+
+
+
+    [HttpPost("register")] // en HttpPost som registerer ny bruker i database
         public IActionResult RegisterUser([FromBody] User user)
         {
             // sjekker om det finnes en bruker i databasen med dette navnet, vis det gjør det så returnerer den en conflict, vis ikke så legger den brukeren til i databasen
