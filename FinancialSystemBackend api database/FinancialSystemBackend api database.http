@@ -1,6 +1,0 @@
-@FinancialSystemBackend_api_database_HostAddress = http://localhost:5280
-
-GET {{FinancialSystemBackend_api_database_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
